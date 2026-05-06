@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tezro Global</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&display=swap');
+        .font-urdu { font-family: 'Noto Nastaliq Urdu', serif; line-height: 1.8; }
+        #sidebar { transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+        .sidebar-open { transform: translateX(0); }
+        .sidebar-closed { transform: translateX(-100%); }
+        .rotate-180 { transform: rotate(180deg); }
+        .service-card:active { transform: scale(0.95); }
+    </style>
+</head>
+<body class="bg-gray-50 overflow-x-hidden mb-20">
+
+    <!-- Overlay -->
+    <div id="overlay" onclick="toggleSidebar()" class="fixed inset-0 bg-black/60 z-[60] hidden opacity-0 backdrop-blur-sm transition-opacity duration-300"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar" class="fixed top-0 left-0 h-full w-72 bg-blue-950 text-white z-[70] sidebar-closed shadow-2xl flex flex-col">
+        <!-- Sidebar Header with Profile Image Update -->
+        <div class="p-6 border-b border-white/10 bg-blue-900/50 flex flex-col items-center gap-3">
+            <div class="relative group">
+                <div class="h-20 w-20 rounded-full bg-blue-500 border-2 border-white/20 flex items-center justify-center overflow-hidden shadow-lg">
+                    <i class="material-icons text-4xl">person</i>
+                </div>
+                <button class="absolute bottom-0 right-0 bg-green-500 p-1.5 rounded-full border-2 border-blue-950 active:scale-90 transition-transform">
+                    <i class="material-icons text-sm">photo_camera</i>
+                </button>
+            </div>
+            <div class="text-center">
+                <h2 class="font-bold text-lg"><span class="text-green-500">Tezro</span> <span data-key="menu">Menu</span></h2>
+                <p class="text-[10px] opacity-60">ID: 88472910</p>
+            </div>
+        </div>
+
+        <nav class="p-4 flex flex-col gap-1 flex-grow overflow-y-auto">
+            <a href="#" class="flex items-center gap-3 p-3 hover:bg-white/10 rounded-xl transition-all"><i class="material-icons opacity-70">account_balance_wallet</i> <span data-key="wallet">Wallet</span></a>
+            <a href="#" class="flex items-center gap-3 p-3 hover:bg-white/10 rounded-xl transition-all"><i class="material-icons opacity-70">history</i> <span data-key="history">History</span></a>
+            <a href="#" class="flex items-center gap-3 p-3 hover:bg-white/10 rounded-xl transition-all"><i class="material-icons opacity-70">notifications</i> <span data-key="notif">Notifications</span></a>
+            <a href="#" class="flex items-center gap-3 p-3 hover:bg-white/10 rounded-xl transition-all"><i class="material-icons opacity-70">settings</i> <span data-key="settings">Settings</span></a>
+            <a href="#" class="flex items-center gap-3 p-3 hover:bg-white/10 rounded-xl transition-all"><i class="material-icons opacity-70">help</i> <span data-key="help">Support</span></a>
+
+            <!-- Language Dropdown -->
+            <div class="mt-4 border-t border-white/5 pt-4">
+                <button onclick="toggleLangMenu()" class="w-full flex items-center justify-between p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-all border border-white/10">
+                    <div class="flex items-center gap-3">
+                        <i class="material-icons text-blue-400">translate</i>
+                        <span data-key="select_lang" class="text-sm font-bold">Language</span>
+                    </div>
+                    <i id="lang-arrow" class="material-icons text-sm transition-transform">expand_more</i>
+                </button>
+                <!-- 9 Languages Grid -->
+                <div id="lang-grid" class="hidden grid grid-cols-3 gap-1.5 p-2 mt-2 bg-black/30 rounded-xl border border-white/5 transition-all"></div>
+            </div>
+        </nav>
+    </aside>
+
+    <div id="header-placeholder"></div>
+    <main id="main-body" class="p-4"></main>
+    <div id="footer-placeholder" class="fixed bottom-0 left-0 w-full z-[50]"></div>
+
+    <!-- Services Portal -->
+    <div id="services-portal" class="fixed inset-0 bg-white z-[100] translate-y-full transition-transform duration-500 ease-in-out flex flex-col">
+        <div class="p-6 flex justify-between items-center bg-white border-b sticky top-0 z-10">
+            <h2 class="text-2xl font-bold text-blue-950" data-key="all_services">All Services</h2>
+            <button onclick="toggleServicesPortal()" class="bg-gray-100 p-2 rounded-full active:bg-gray-200"><i class="material-icons">close</i></button>
+        </div>
+        <div class="p-6 grid grid-cols-3 gap-6 overflow-y-auto flex-grow pb-10">
+            <div class="service-card flex flex-col items-center gap-2 transition-transform">
+                <div class="bg-blue-50 p-4 rounded-3xl shadow-sm"><i class="material-icons text-blue-600 text-3xl">home_repair_service</i></div>
+                <span class="text-[11px] font-bold text-center text-gray-700 leading-tight">Home Services</span>
+            </div>
+            <div class="service-card flex flex-col items-center gap-2 transition-transform">
+                <div class="bg-orange-50 p-4 rounded-3xl shadow-sm"><i class="material-icons text-orange-600 text-3xl">directions_bike</i></div>
+                <span class="text-[11px] font-bold text-center text-gray-700 leading-tight">Ride Services</span>
+            </div>
+            <div class="service-card flex flex-col items-center gap-2 transition-transform">
+                <div class="bg-green-50 p-4 rounded-3xl shadow-sm"><i class="material-icons text-green-600 text-3xl">local_mall</i></div>
+                <span class="text-[11px] font-bold text-center text-gray-700 leading-tight">Shopping</span>
+            </div>
+            <!-- More cards can be added here -->
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            "en": { "name": "English", "dir": "ltr", "menu": "Menu", "profile": "Profile", "wallet": "Wallet", "select_lang": "Language", "slogan": "HAR KAAM ASAN!", "history": "History", "notif": "Alerts", "settings": "Settings", "help": "Support", "all_services": "Services", "search_placeholder": "Search..." },
+            "ur": { "name": "اردو", "dir": "rtl", "menu": "مینیو", "profile": "پروفائل", "wallet": "والٹ", "select_lang": "زبانیں", "slogan": "ہر کام آسان!", "history": "تاریخ", "notif": "اطلاعات", "settings": "سیٹنگز", "help": "مدد", "all_services": "سروسز", "search_placeholder": "تلاش کریں..." },
+            "ar": { "name": "العربية", "dir": "rtl", "menu": "القائمة", "profile": "الحساب", "wallet": "المحفظة", "select_lang": "اللغة", "slogan": "كل شيء سهل!", "history": "التاريخ", "notif": "إشعارات", "settings": "الإعدادات", "help": "الدعم", "all_services": "خدماتنا", "search_placeholder": "بحث..." },
+            "fa": { "name": "فارسی", "dir": "rtl", "menu": "منو", "profile": "پروفایل", "wallet": "کیف پول", "select_lang": "زبان", "slogan": "همه چیز آسان!", "history": "تاریخچه", "notif": "اعلان‌ها", "settings": "تنظیمات", "help": "پشتیبانی", "all_services": "خدمات ما", "search_placeholder": "جستجو..." },
+            "hi": { "name": "हिन्दी", "dir": "ltr", "menu": "मेन्यू", "profile": "प्रोफ़ाइल", "wallet": "वॉलेट", "select_lang": "भाषा", "slogan": "सब आसान!", "history": "इतिहास", "notif": "सूचनाएं", "settings": "सेटिंग्स", "help": "सहायता", "all_services": "सेवाएं", "search_placeholder": "खोजें..." },
+            "bn": { "name": "বাংলা", "dir": "ltr", "menu": "মেনু", "profile": "প্রোফাইল", "wallet": "ওয়ালেট", "select_lang": "ভাষা", "slogan": "সব সহজ!", "history": "ইতিহাস", "notif": "বিজ্ঞপ্তি", "settings": "সেটিংস", "help": "সহায়তা", "all_services": "পরিষেবা", "search_placeholder": "অনুসন্ধান..." },
+            "zh": { "name": "中文", "dir": "ltr", "menu": "菜单", "profile": "资料", "wallet": "钱包", "select_lang": "语言", "slogan": "一切简单！", "history": "历史", "notif": "通知", "settings": "设置", "help": "支持", "all_services": "我们的服务", "search_placeholder": "搜索..." },
+            "ru": { "name": "Русский", "dir": "ltr", "menu": "Меню", "profile": "Профиль", "wallet": "Кошелек", "select_lang": "Язык", "slogan": "Все просто!", "history": "История", "notif": "Уведомления", "settings": "Настройки", "help": "Поддержка", "all_services": "Услуги", "search_placeholder": "Поиск..." },
+            "fr": { "name": "Français", "dir": "ltr", "menu": "Menu", "profile": "Profil", "wallet": "Portefeuille", "select_lang": "Langue", "slogan": "TOUT EST FACILE!", "history": "Historique", "notif": "Notifications", "settings": "Paramètres", "help": "Aide", "all_services": "Services", "search_placeholder": "Chercher..." }
+        };
+
+        function renderLangButtons() {
+            const grid = document.getElementById('lang-grid');
+            grid.innerHTML = '';
+            Object.keys(translations).forEach(code => {
+                const btn = document.createElement('button');
+                btn.className = 'bg-white/5 py-2 px-1 rounded-lg text-[9px] hover:bg-blue-600 transition-all font-medium border border-white/5';
+                btn.innerText = translations[code].name;
+                btn.onclick = () => changeLang(code);
+                grid.appendChild(btn);
+            });
+        }
+
+        function toggleLangMenu() {
+            document.getElementById('lang-grid').classList.toggle('hidden');
+            document.getElementById('lang-arrow').classList.toggle('rotate-180');
+        }
+
+        function toggleServicesPortal() {
+            const portal = document.getElementById('services-portal');
+            portal.classList.toggle('translate-y-full');
+            portal.classList.toggle('translate-y-0');
+        }
+
+        function changeLang(lang) {
+            const data = translations[lang] || translations["en"];
+            document.querySelectorAll('[data-key]').forEach(elem => {
+                const key = elem.getAttribute('data-key');
+                if (data[key]) {
+                    if (elem.tagName === "INPUT") elem.placeholder = data[key];
+                    else elem.innerText = data[key];
+                }
+            });
+            document.documentElement.dir = data.dir;
+            document.body.classList.toggle('font-urdu', ['ur', 'ar', 'fa'].includes(lang));
+            localStorage.setItem('selectedLang', lang);
+            if (document.getElementById('sidebar').classList.contains('sidebar-open')) toggleSidebar();
+        }
+
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const isOpen = sidebar.classList.contains('sidebar-open');
+            sidebar.classList.toggle('sidebar-open', !isOpen);
+            sidebar.classList.toggle('sidebar-closed', isOpen);
+            overlay.classList.toggle('hidden', isOpen);
+            setTimeout(() => overlay.classList.toggle('opacity-100', !isOpen), 10);
+        }
+
+        window.onload = () => {
+            renderLangButtons();
+            const savedLang = localStorage.getItem('selectedLang') || 'en';
+            Promise.all([
+                fetch('components/header.html').then(r => r.text()).catch(()=>""),
+                fetch('components/footer.html').then(r => r.text()).catch(()=>"")
+            ]).then(([h, f]) => {
+                document.getElementById('header-placeholder').innerHTML = h;
+                document.getElementById('footer-placeholder').innerHTML = f;
+                changeLang(savedLang);
+            });
+        };
+    </script>
+</body>
+</html>

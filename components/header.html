@@ -1,0 +1,49 @@
+<div class="bg-white shadow-sm relative w-full h-28 overflow-hidden border-b border-gray-100">
+    <div class="grid grid-cols-12 h-full w-full items-center">
+        <!-- Left: Logo Section -->
+        <div class="col-span-5 p-4 flex items-center gap-2">
+            <div class="flex flex-col">
+                <img src="public/Logo.png" alt="Logo" class="h-12 object-contain">
+                <p class="text-green-600 text-[7px] font-extrabold uppercase tracking-tighter border-t border-green-600 pt-0.5">
+                    Har Kaam Asan, Zindagi Behtar!
+                </p>
+            </div>
+        </div>
+
+        <!-- Middle: Sticker -->
+        <div class="col-span-4 relative flex justify-center items-center">
+            <img src="public/stikar.png" alt="Sticker" class="h-24 object-contain drop-shadow-md">
+        </div>
+
+        <!-- Right: Profile + Menu Button -->
+        <div class="col-span-3 flex flex-col items-end justify-center p-4 gap-1">
+            <div class="relative">
+                <div class="bg-blue-950 rounded-full p-0.5 shadow-md">
+                    <div class="bg-white/20 rounded-full p-2 border border-white/30">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="absolute bottom-0 right-0 h-3 w-3 bg-green-500 border-2 border-white rounded-full"></div>
+            </div>
+            <!-- Sidebar Trigger Button -->
+            <button onclick="toggleSidebar()" class="mt-1 p-1 active:bg-blue-100 rounded-full transition-colors flex items-center justify-center bg-blue-50 shadow-sm border border-blue-100">
+                <i class="material-icons text-blue-900 text-lg">menu</i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Single Dynamic Search Bar -->
+<div class="px-4 pb-3 bg-white">
+    <div class="relative flex items-center shadow-sm border border-gray-200 rounded-2xl bg-gray-50 p-1">
+        <i class="material-icons text-gray-400 px-2">search</i>
+        <input type="text" data-key="search_placeholder"
+               class="w-full bg-transparent py-2 px-1 text-sm focus:outline-none text-gray-700"
+               placeholder="Search...">
+        <button onclick="toggleServicesPortal()" class="bg-blue-900 text-white px-4 py-1.5 rounded-xl text-xs font-bold active:scale-95 transition-transform">
+            <i class="material-icons text-sm">tune</i>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="relative bg-blue-950 text-white shadow-[0_-5px_20px_rgba(0,0,0,0.3)] border-t border-white/5 pb-2 pt-1">
+    <div class="grid grid-cols-7 items-center justify-items-center h-16 relative">
+        
+        <!-- Home -->
+        <a href="index.html" class="flex flex-col items-center gap-1">
+            <i class="material-icons text-xl text-blue-400">home</i>
+            <span class="text-[8px] font-bold uppercase" data-key="home">Home</span>
+        </a>
+
+        <!-- Categories -->
+        <a href="#" class="flex flex-col items-center gap-1 opacity-60">
+            <i class="material-icons text-xl">grid_view</i>
+            <span class="text-[8px] uppercase" data-key="cats">Categories</span>
+        </a>
+
+        <!-- Orders -->
+        <a href="#" class="flex flex-col items-center gap-1 opacity-60">
+            <i class="material-icons text-xl">shopping_bag</i>
+            <span class="text-[8px] uppercase" data-key="orders">Orders</span>
+        </a>
+
+        <!-- Central Floating Button -->
+        <div class="relative -mt-8 flex justify-center items-center">
+            <button onclick="toggleServicesPortal()" 
+                class="bg-blue-950 p-1 rounded-full shadow-2xl active:scale-90 transition-transform">
+                <div class="bg-green-600 rounded-full h-14 w-14 flex items-center justify-center border-2 border-white/10 ring-4 ring-blue-950/20">
+                    <img src="public/Logo.png" alt="T" class="h-8 w-8 object-contain brightness-0 invert">
+                </div>
+            </button>
+        </div>
+
+        <!-- Wallet -->
+        <a href="#" class="flex flex-col items-center gap-1 opacity-60">
+            <i class="material-icons text-xl">account_balance_wallet</i>
+            <span class="text-[8px] uppercase" data-key="wallet">Wallet</span>
+        </a>
+
+        <!-- Offers -->
+        <a href="#" class="flex flex-col items-center gap-1 opacity-60">
+            <i class="material-icons text-xl">local_offer</i>
+            <span class="text-[8px] uppercase" data-key="offers">Offers</span>
+        </a>
+
+        <!-- Account -->
+        <a href="#" class="flex flex-col items-center gap-1 opacity-60">
+            <i class="material-icons text-xl">person_outline</i>
+            <span class="text-[8px] uppercase" data-key="profile">Account</span>
+        </a>
+    </div>
+</div>
